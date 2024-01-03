@@ -20,5 +20,10 @@
   "confirmPassword": "Confirm password",
   "minLengthMustBe": "The min length must be {{length}} character(s)",
   "maxLengthMustBe": "The max length must be {{length}} character(s)",
-  "passwordDoesNotMatch": "Password does not match"
+  "passwordDoesNotMatch": "Password does not match",
+  "posts": "Posts",
+  "followers": "Followers",
+  "following": "Following",
+  "bio": "Bio"
+
 }

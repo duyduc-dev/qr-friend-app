@@ -8,14 +8,14 @@ import useAuthStore from '@/store/useAuthStore';
 const TabLayout = () => {
   const { t } = useTranslation();
   const { isLogin } = useAuthStore();
-
-  useEffect(() => {
-    requestIdleCallback(() => {
-      if (!isLogin) {
-        router.replace('/(auth)/welcome');
-      }
-    });
-  }, [isLogin]);
+  //
+  // useEffect(() => {
+  //   requestIdleCallback(() => {
+  //     if (!isLogin) {
+  //       router.replace('/(auth)/welcome');
+  //     }
+  //   });
+  // }, [isLogin]);
 
   return (
     <Tabs
@@ -24,6 +24,7 @@ const TabLayout = () => {
     >
       <Tabs.Screen name="index" />
       <Tabs.Screen name="search" />
+      <Tabs.Screen name="setting" />
     </Tabs>
   );
 };

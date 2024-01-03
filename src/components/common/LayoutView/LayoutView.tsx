@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar, StatusBarStyle } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
 import {
   Image,
@@ -23,6 +23,7 @@ type Props = {
   hiddenHeader?: boolean;
   hiddenBackIcon?: boolean;
   isForm?: boolean;
+  statusBarStyle?: StatusBarStyle;
   containerStyle?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
   headerStyle?: StyleProp<ViewStyle>;
@@ -39,6 +40,7 @@ const LayoutView = (props: Props) => {
     hiddenBackIcon,
     hiddenHeader,
     statusBarTranslucent = false,
+    statusBarStyle,
   } = props;
 
   const offset = useSafeAreaInsets();
@@ -60,6 +62,7 @@ const LayoutView = (props: Props) => {
     <SafeAreaView style={[tw`flex-1 bg-white`, containerStyle]}>
       <StatusBar
         animated
+        style={statusBarStyle}
         translucent={statusBarTranslucent}
         backgroundColor={statusBarBgColor}
       />

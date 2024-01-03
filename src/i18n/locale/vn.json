@@ -20,5 +20,10 @@
   "alreadyHaveAnAccount": "Bạn đã có tài khoản",
   "minLengthMustBe": "Độ dài tối thiểu phải là {{length}} ký tự",
   "maxLengthMustBe": "Độ dài tối đa phải là {{length}} ký tự",
-  "passwordDoesNotMatch": "Mật khẩu không trùng khớp"
+  "passwordDoesNotMatch": "Mật khẩu không trùng khớp",
+  "posts": "Bài viết",
+  "followers": "Người theo dõi",
+  "following": "Đang theo dõi",
+  "bio": "Mô tả"
+
 }

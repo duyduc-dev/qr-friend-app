@@ -6,12 +6,14 @@ export default {
 
   // primary: '#1F41BB',
   primary: '#EF4637',
+  secondary: '#FFF9E8',
   red: '#ff0000',
 
   grey: {
     25: '#ECECEC',
     50: '#F8F9FF',
     100: '#F1F4FF',
+    200: '#999999',
     500: '#677185',
     600: '#626262',
     700: '#494949',
