@@ -26,7 +26,9 @@ const ChangeLanguagePopup = () => {
     };
 
     return (
-      <View style={tw`bg-white rounded-12 px-12 py-12 w-150`}>
+      <View
+        style={tw`bg-white rounded-12 px-12 py-12 w-150 border-1 border-grey-25`}
+      >
         <TouchableOpacity
           onPress={() => changeLng(LanguageCode.VN)}
           style={tw.style(

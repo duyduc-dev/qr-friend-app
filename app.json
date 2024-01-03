@@ -19,7 +19,8 @@
       "supportsTablet": true,
       "runtimeVersion": {
         "policy": "appVersion"
-      }
+      },
+      "bundleIdentifier": "com.app.QRFriend"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,7 +39,7 @@
       [
         "expo-updates",
         {
-          "username": "account-username"
+          "username": "duyduc"
         }
       ]
     ],

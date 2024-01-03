@@ -3,7 +3,7 @@ import { BlurView } from 'expo-blur';
 import { router } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, useWindowDimensions, View } from 'react-native';
+import { Image, Platform, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import LayoutView from '@/components/common/LayoutView';
@@ -23,9 +23,6 @@ const WelcomeScreen = () => {
     >
       <View style={tw`flex-1`}>
         <View style={tw`absolute top-0 right-0 bottom-0 left-0`}>
-          <View style={tw`ml-auto mr-42 mt-${Math.floor(offset.top) + 12}`}>
-            <ChangeLanguagePopup />
-          </View>
           <View>
             <Image
               style={tw`mt-10 absolute mx-auto`}
@@ -33,7 +30,16 @@ const WelcomeScreen = () => {
             />
           </View>
         </View>
-        <View style={tw`flex-1`} />
+        <View style={tw`flex-1`}>
+          <View
+            style={tw.style(
+              `ml-auto mr-42 `,
+              Platform.OS === 'android' && `mt-${Math.floor(offset.top) + 12}`,
+            )}
+          >
+            <ChangeLanguagePopup />
+          </View>
+        </View>
         <View style={tw`flex-1 px-16 justify-center `}>
           <View style={tw`rounded-12 overflow-hidden`}>
             <BlurView intensity={100} style={tw`rounded-12 px-16 py-16`}>

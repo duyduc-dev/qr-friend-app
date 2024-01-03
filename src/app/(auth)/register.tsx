@@ -39,7 +39,7 @@ const RegisterScreen = () => {
         bounces={false}
         contentContainerStyle={{ flexGrow: 1 }}
       >
-        <View style={tw`flex-1 justify-center`}>
+        <View style={tw`flex-1 justify-center pb-30`}>
           <QRFTextView
             fontSize={30}
             fontWeight="700"

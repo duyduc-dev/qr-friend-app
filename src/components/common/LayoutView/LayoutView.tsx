@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
 import {
   Image,
+  Platform,
   SafeAreaView,
   StyleProp,
   TouchableOpacity,
@@ -66,7 +67,15 @@ const LayoutView = (props: Props) => {
         <Image style={tw`ml-auto`} source={require('@/assets/ellipse.png')} />
       </View>
       {!hiddenHeader && (
-        <View style={[tw`mt-${Math.floor(offset.top)} px-16`, headerStyle]}>
+        <View
+          style={[
+            tw.style(
+              ` px-16`,
+              Platform.OS === 'android' && `mt-${Math.floor(offset.top)}`,
+            ),
+            headerStyle,
+          ]}
+        >
           <TouchableOpacity
             style={tw.style(
               `mt-24 w-32 h-32 items-center justify-center`,

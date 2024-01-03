@@ -5,12 +5,15 @@
   "scripts": {
     "prebuild": "expo prebuild",
     "prebuild:clean": "expo prebuild --clean",
+    "prebuild:ios": "expo prebuild --platform ios",
+    "prebuild:android": "expo prebuild --platform android",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "eslint .",
-    "build:android:staging": "eas build --platform android --profile staging"
+    "build:android:staging": "eas build --platform android --profile staging",
+    "build:ios:staging": "eas build --platform ios --profile staging"
   },
   "dependencies": {
     "@expo-google-fonts/mulish": "^0.2.3",
