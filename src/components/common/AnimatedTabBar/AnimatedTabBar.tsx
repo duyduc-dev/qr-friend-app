@@ -1,22 +1,11 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { BlurView } from 'expo-blur';
-import { ReactNode } from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 
 import BottomTabIcon from '@/components/common/AnimatedTabBar/BottomTabIcon';
-import QRFTextView from '@/components/common/Text';
 import tw from '@/libs/tailwind';
 const AnimatedTabBar = ({
   navigation,
@@ -86,14 +75,6 @@ const AnimatedTabBar = ({
           >
             <View style={tw`flex-1 justify-center items-center gap-4`}>
               <BottomTabIcon focused={isFocused} route={route.name} />
-              {/*{isFocused && (*/}
-              {/*  <QRFTextView*/}
-              {/*    fontSize={12}*/}
-              {/*    style={{ color: isFocused ? '#0067ff' : '#fff' }}*/}
-              {/*  >*/}
-              {/*    {route.name}*/}
-              {/*  </QRFTextView>*/}
-              {/*)}*/}
             </View>
           </TouchableOpacity>
         );

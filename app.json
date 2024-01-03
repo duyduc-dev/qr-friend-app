@@ -16,21 +16,31 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.app.QRFriend"
+      "package": "com.app.QRFriend",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
       "favicon": "./src/assets/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-updates",
+        {
+          "username": "account-username"
+        }
+      ]
     ],
     "experiments": {
       "tsconfigPaths": true,
@@ -43,6 +53,9 @@
       "eas": {
         "projectId": "e7e7607a-94fb-4e9a-974d-835d175bf501"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e7e7607a-94fb-4e9a-974d-835d175bf501"
     }
   }
 }
