@@ -1,4 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, TouchableOpacity, View } from 'react-native';
@@ -8,8 +9,12 @@ import QRFTextView from '@/components/common/Text';
 import { colors } from '@/constants';
 import tw from '@/libs/tailwind';
 import { boxShadowStyle } from '@/syles/StyleGlobal';
-
-const CardMainProfile = () => {
+type Props = {
+  title: string;
+  username: string;
+  bio?: string;
+};
+const CardMainProfile = ({ username, title, bio }: Props) => {
   const { t } = useTranslation();
   return (
     <View style={[tw`m-2 p-18 bg-white rounded-35 mt-24`, boxShadowStyle.one]}>
@@ -22,9 +27,7 @@ const CardMainProfile = () => {
         >
           <Image
             resizeMode="cover"
-            width={90}
-            height={140}
-            style={tw`w-100 h-150 rounded-full`}
+            style={tw`w-90 h-140 rounded-full`}
             source={require('@/assets/character1.png')}
           />
         </View>
@@ -32,7 +35,7 @@ const CardMainProfile = () => {
           <View style={tw`flex-row justify-between gap-6`}>
             <View style={tw`flex-1 gap-4`}>
               <QRFTextView fontSize={18} numberOfLines={2} fontWeight="700">
-                Dang Duy Duc
+                {title}
               </QRFTextView>
               <QRFTextView
                 fontSize={14}
@@ -40,10 +43,10 @@ const CardMainProfile = () => {
                 numberOfLines={1}
                 fontWeight="500"
               >
-                @develop
+                @{username}
               </QRFTextView>
             </View>
-            <TouchableOpacity style={tw``}>
+            <TouchableOpacity onPress={() => router.push('/qr-connect')}>
               <AntDesign name="qrcode" size={24} color="black" />
             </TouchableOpacity>
           </View>
@@ -54,14 +57,16 @@ const CardMainProfile = () => {
           </View>
         </View>
       </View>
-      <View style={tw`p-10`}>
-        <QRFTextView fontSize={14} fontWeight="800" numberOfLines={3}>
-          {t`bio`}:{' '}
-          <QRFTextView fontSize={14} fontWeight="500">
-            I'am Developer
+      {bio && (
+        <View style={tw`p-10`}>
+          <QRFTextView fontSize={14} fontWeight="800" numberOfLines={3}>
+            {t`bio`}:{' '}
+            <QRFTextView fontSize={14} fontWeight="500">
+              {bio}
+            </QRFTextView>
           </QRFTextView>
-        </QRFTextView>
-      </View>
+        </View>
+      )}
     </View>
   );
 };

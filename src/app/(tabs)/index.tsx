@@ -9,7 +9,7 @@ const TabOneScreen = () => {
   const { t } = useTranslation();
   return (
     <LayoutView hiddenBackIcon statusBarTranslucent>
-      <CardMainProfile />
+      <CardMainProfile title="Dang Duy Duc" username="develop" />
       <MultipleTab />
     </LayoutView>
   );

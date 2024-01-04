@@ -8,7 +8,6 @@ const TabSearchScreen = () => {
   return (
     <LayoutView statusBarTranslucent>
       <QRFTextView>TabSearchScreen</QRFTextView>
-      <Button title="login" onPress={() => router.push('/(auth)/welcome')} />
     </LayoutView>
   );
 };

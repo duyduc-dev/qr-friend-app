@@ -4,6 +4,8 @@ import PagerView from 'react-native-pager-view';
 
 import { QRFTabsRef } from '@/components/common/Tabs';
 import QRFTextView from '@/components/common/Text';
+import DetailInfoTab from '@/components/screens/profile/MultipleTab/DetailInfoTab';
+import PostsTab from '@/components/screens/profile/MultipleTab/PostsTab';
 import tw from '@/libs/tailwind';
 
 import ProfileTab from './ProfileTab';
@@ -25,12 +27,8 @@ const MultipleTab = () => {
         style={tw`flex-1 mt-16`}
         initialPage={0}
       >
-        <View key={1}>
-          <QRFTextView>1</QRFTextView>
-        </View>
-        <View key={2}>
-          <QRFTextView>2</QRFTextView>
-        </View>
+        <PostsTab key={0} />
+        <DetailInfoTab key={1} />
       </PagerView>
     </View>
   );

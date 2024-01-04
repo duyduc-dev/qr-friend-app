@@ -61,7 +61,6 @@ const LayoutView = (props: Props) => {
   return (
     <SafeAreaView style={[tw`flex-1 bg-white`, containerStyle]}>
       <StatusBar
-        animated
         style={statusBarStyle}
         translucent={statusBarTranslucent}
         backgroundColor={statusBarBgColor}
