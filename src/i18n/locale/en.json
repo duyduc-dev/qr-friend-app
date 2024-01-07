@@ -25,6 +25,17 @@
   "followers": "Followers",
   "following": "Following",
   "bio": "Bio",
-  "detail": "Detail"
+  "providerYourInformation": "Provider your information",
+  "firstName": "First name",
+  "lastName":"Last name",
+  "username": "Username",
+  "phoneNumber":"Phone number",
+  "continue": "Continue",
+  "isExist": "{{field}} is exist",
+  "editProfile": "Edit profile",
+  "findYouFriendByQrCode": "Find your friend by QR code",
+  "change": "Change",
+  "invalidCredential": "Invalid credential",
+  "loginSuccessfully": "Login successfully"
 
 }

@@ -8,16 +8,17 @@ import WrapInfo from '@/components/common/CardMainProfile/WrapInfo';
 import QRFTextView from '@/components/common/Text';
 import { colors } from '@/constants';
 import tw from '@/libs/tailwind';
-import { boxShadowStyle } from '@/syles/StyleGlobal';
+import { boxShadowStyle } from '@/styles/StyleGlobal';
 type Props = {
-  title: string;
-  username: string;
+  title?: string;
+  username?: string;
   bio?: string;
+  hiddenQr?: boolean;
 };
-const CardMainProfile = ({ username, title, bio }: Props) => {
+const CardMainProfile = ({ username, title, bio, hiddenQr }: Props) => {
   const { t } = useTranslation();
   return (
-    <View style={[tw`m-2 p-18 bg-white rounded-35 mt-24`, boxShadowStyle.one]}>
+    <View style={[tw`m-2 p-18 bg-white rounded-35`, boxShadowStyle.one]}>
       <View style={tw`flex-row gap-24`}>
         <View
           style={[
@@ -46,9 +47,11 @@ const CardMainProfile = ({ username, title, bio }: Props) => {
                 @{username}
               </QRFTextView>
             </View>
-            <TouchableOpacity onPress={() => router.push('/qr-connect')}>
-              <AntDesign name="qrcode" size={24} color="black" />
-            </TouchableOpacity>
+            {!hiddenQr && (
+              <TouchableOpacity onPress={() => router.push('/qr-connect')}>
+                <AntDesign name="qrcode" size={24} color="black" />
+              </TouchableOpacity>
+            )}
           </View>
           <View style={tw`flex-row items-center gap-8 flex-wrap mt-8`}>
             <WrapInfo quantity={0} label={t`posts`} />

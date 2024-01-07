@@ -8,6 +8,7 @@ export default {
   primary: '#EF4637',
   secondary: '#FFF9E8',
   red: '#ff0000',
+  success: '#28a745',
 
   grey: {
     25: '#ECECEC',

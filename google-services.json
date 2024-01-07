@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "971407922380",
+    "project_id": "qrfriend-c7aa9",
+    "storage_bucket": "qrfriend-c7aa9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971407922380:android:81b6b4d4ba610a9b781e69",
+        "android_client_info": {
+          "package_name": "com.app.QRFriend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcr1FTlPo4OQzsnSu5fz2a0Pef_X5mF3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

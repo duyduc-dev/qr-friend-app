@@ -1,13 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import QRFTextView from '@/components/common/Text';
+import { PostsList } from '../ProfilePost';
 
 const PostsTab = () => {
   return (
     <View>
-      <QRFTextView>Coming soon</QRFTextView>
+      <PostsList />
     </View>
   );
 };
+
 export default PostsTab;

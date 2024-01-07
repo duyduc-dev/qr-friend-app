@@ -9,6 +9,7 @@ import { useDeviceContext } from 'twrnc';
 import QRFRootContainer from '@/components/core/QRFRootContainer';
 import useLoadFont from '@/hooks/useLoadFont';
 import tw from '@/libs/tailwind';
+
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',

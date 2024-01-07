@@ -26,4 +26,16 @@
   "following": "Đang theo dõi",
   "bio": "Mô tả",
   "detail": "Chi tiết",
+  "providerYourInformation": "Cung cấp thêm thông tin của bạn",
+  "firstName": "Tên",
+  "lastName":"Họ",
+  "username": "ID tài khoản",
+  "phoneNumber":"Số điện thoại",
+  "continue": "Tiếp tục",
+  "isExist": "{{field}} đã tồn tại",
+  "editProfile": "Chỉnh sửa thông tin",
+  "findYouFriendByQrCode": "Tìm bạn bằng QR code",
+  "change": "Thay đổi",
+  "invalidCredential": "Xác thực không hợp lệ",
+  "loginSuccessfully": "Đăng nhập thành công"
 }

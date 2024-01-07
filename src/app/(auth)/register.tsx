@@ -1,25 +1,45 @@
 import { Button, Input } from '@rneui/themed';
 import { router } from 'expo-router';
-import { Formik } from 'formik';
-import React, { useRef } from 'react';
+import { Formik, FormikProps } from 'formik';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, TextInput, TouchableOpacity, View } from 'react-native';
 import { ref } from 'yup';
 
+import AuthApi from '@/apis/AuthApi';
 import { GoogleIcon } from '@/components/common/icon';
 import LayoutView from '@/components/common/LayoutView';
+import ProgressStepBar from '@/components/common/ProgressStepBar/ProgressStepBar';
 import QRFTextView from '@/components/common/Text';
 import { colors } from '@/constants';
 import tw from '@/libs/tailwind';
 import { RegisterRequest } from '@/modals/request/AuthRequest';
+import userRegistrationStore from '@/store/useRegistrationStore';
 import yup from '@/validations/yup';
 
 const RegisterScreen = () => {
   const { t } = useTranslation();
   const passwordRef = useRef<TextInput>(null);
   const confirmPasswordRef = useRef<TextInput>(null);
-  const handleSubmitRegister = (values: RegisterRequest) => {
-    console.log('=>(register.tsx:23) values', values);
+  const { setAuthRegister } = userRegistrationStore();
+  const formikRef = useRef<FormikProps<RegisterRequest>>(null);
+
+  const handleSubmitRegister = async (values: RegisterRequest) => {
+    const isEmpty = await handleCheckEmailExist(values.email);
+    if (!isEmpty) return;
+    setAuthRegister(values);
+    router.push('/(auth)/registration-user');
+  };
+
+  const handleCheckEmailExist = async (text: string) => {
+    const res = await AuthApi.checkFieldRegisterExist('email', text);
+    if (!res) {
+      formikRef.current?.setFieldError(
+        'email',
+        t(`isExist`, { field: t`email` }),
+      );
+    }
+    return res;
   };
 
   const registerSchema = yup.object({
@@ -33,7 +53,19 @@ const RegisterScreen = () => {
   });
 
   return (
-    <LayoutView isForm statusBarTranslucent>
+    <LayoutView
+      isForm
+      statusBarTranslucent
+      headerStyle={tw`gap-12 items-start`}
+      middleComponent={
+        <ProgressStepBar
+          showNumberStep
+          step={1}
+          totalStep={3}
+          containerStyle={tw`flex-1 mt--12`}
+        />
+      }
+    >
       <ScrollView
         showsVerticalScrollIndicator={false}
         bounces={false}
@@ -58,6 +90,7 @@ const RegisterScreen = () => {
             {t`createAnAccountSoYouCanDiscoverAllYourFriends`}
           </QRFTextView>
           <Formik<RegisterRequest>
+            innerRef={formikRef}
             validateOnMount
             enableReinitialize={false}
             initialValues={{ email: '', password: '', confirmPassword: '' }}
@@ -81,6 +114,9 @@ const RegisterScreen = () => {
                   onChangeText={(text) => {
                     setFieldValue('email', text);
                     setFieldTouched('email', true, false);
+                  }}
+                  onEndEditing={(e) => {
+                    handleCheckEmailExist(e.nativeEvent.text);
                   }}
                   returnKeyType="next"
                   onBlur={handleBlur('email')}
@@ -117,7 +153,7 @@ const RegisterScreen = () => {
                   errorMessage={
                     touched.confirmPassword ? errors.confirmPassword : undefined
                   }
-                  onSubmitEditing={() => confirmPasswordRef.current?.blur()}
+                  onSubmitEditing={() => isValid && handleSubmit()}
                 />
 
                 <Button

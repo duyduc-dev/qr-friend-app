@@ -7,6 +7,7 @@ import {
   Platform,
   SafeAreaView,
   StyleProp,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -14,23 +15,29 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import FormWrapper from 'src/components/common/FormWrapper';
 
+import QRFTextView from '@/components/common/Text';
 import tw from '@/libs/tailwind';
 
 type Props = {
   children: ReactNode;
   statusBarBgColor?: string;
+  title?: string;
   statusBarTranslucent?: boolean;
   hiddenHeader?: boolean;
   hiddenBackIcon?: boolean;
   isForm?: boolean;
+  middleComponent?: ReactNode;
   statusBarStyle?: StatusBarStyle;
   containerStyle?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
   headerStyle?: StyleProp<ViewStyle>;
+  containerTitleStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
 const LayoutView = (props: Props) => {
   const {
+    title,
     children,
     containerStyle,
     contentStyle,
@@ -41,6 +48,9 @@ const LayoutView = (props: Props) => {
     hiddenHeader,
     statusBarTranslucent = false,
     statusBarStyle,
+    middleComponent,
+    containerTitleStyle,
+    titleStyle,
   } = props;
 
   const offset = useSafeAreaInsets();
@@ -72,7 +82,7 @@ const LayoutView = (props: Props) => {
         <View
           style={[
             tw.style(
-              ` px-16`,
+              `flex-row items-center px-16 mt-24`,
               Platform.OS === 'android' && `mt-${Math.floor(offset.top)}`,
             ),
             headerStyle,
@@ -80,13 +90,28 @@ const LayoutView = (props: Props) => {
         >
           <TouchableOpacity
             style={tw.style(
-              `mt-24 w-32 h-32 items-center justify-center`,
+              `w-32 h-32 items-center justify-center`,
               hiddenBackIcon && 'hidden',
             )}
             onPress={() => router.canGoBack() && router.back()}
           >
             <Ionicons name="chevron-back" size={32} color="black" />
           </TouchableOpacity>
+          {middleComponent ?? (
+            <>
+              <View style={[tw`flex-1`, containerTitleStyle]}>
+                <QRFTextView
+                  align="center"
+                  fontSize={18}
+                  fontWeight="600"
+                  style={titleStyle}
+                >
+                  {title}
+                </QRFTextView>
+              </View>
+              <View style={tw`w-32`} />
+            </>
+          )}
         </View>
       )}
       <WrapperContent />

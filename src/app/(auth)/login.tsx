@@ -1,10 +1,18 @@
-import { Button, Input, InputProps } from '@rneui/themed';
+import { Button, Input } from '@rneui/themed';
 import { router } from 'expo-router';
 import { Formik } from 'formik';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, TextInput, TouchableOpacity, View } from 'react-native';
 
+import AuthApi from '@/apis/AuthApi';
+import UserApi from '@/apis/UserApi';
+import LoadingAnimation, {
+  LoadingAnimationRef,
+} from '@/components/common/animation/LoadingAnimation';
+import StatusAnimation, {
+  StatusAnimationRef,
+} from '@/components/common/animation/StatusAnimation';
 import { GoogleIcon } from '@/components/common/icon';
 import LayoutView from '@/components/common/LayoutView';
 import QRFTextView from '@/components/common/Text';
@@ -17,18 +25,31 @@ const LoginScreen = () => {
   const { t } = useTranslation();
   const passwordRef = useRef<TextInput>(null);
   const { setAuth } = useAuthStore();
+  const loadingRef = useRef<LoadingAnimationRef>(null);
+  const statusAnimationRef = useRef<StatusAnimationRef>(null);
 
   const loginSchema = Yup.object({
     email: Yup.string().required().email(),
     password: Yup.string().required(),
   });
 
-  const handleSubmitLogin = (values: LoginRequest) => {
-    console.log(values);
-    setAuth({
-      isLogin: true,
-    });
-    router.push('/(tabs)/');
+  const handleSubmitLogin = async (values: LoginRequest) => {
+    try {
+      loadingRef.current?.open();
+      const token = await AuthApi.login(values);
+      const auth = token && (await UserApi.getAuth());
+      loadingRef.current?.close();
+      statusAnimationRef.current?.open({
+        message: t`loginSuccessfully`,
+        onEnd: () => auth && setAuth(auth),
+      });
+    } catch (e) {
+      loadingRef.current?.close();
+      statusAnimationRef.current?.open({
+        type: 'error',
+        message: t`invalidCredential`,
+      });
+    }
   };
 
   return (
@@ -99,7 +120,7 @@ const LoginScreen = () => {
                   returnKeyType="done"
                   onBlur={handleBlur('password')}
                   errorMessage={touched.password ? errors.password : undefined}
-                  onSubmitEditing={() => passwordRef.current?.blur()}
+                  onSubmitEditing={() => isValid && handleSubmit()}
                 />
                 <TouchableOpacity style={tw`ml-auto mb-8 mr-12`}>
                   <QRFTextView
@@ -149,6 +170,8 @@ const LoginScreen = () => {
             </TouchableOpacity>
           </View>
         </View>
+        <LoadingAnimation ref={loadingRef} />
+        <StatusAnimation ref={statusAnimationRef} />
       </ScrollView>
     </LayoutView>
   );

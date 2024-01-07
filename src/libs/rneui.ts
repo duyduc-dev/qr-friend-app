@@ -16,6 +16,9 @@ export const theme = createTheme({
         align: 'center',
         color: type === 'clear' ? colors.primary : colors.white,
       }),
+      loadingProps: {
+        color: '#000',
+      },
       buttonStyle: tw.style(
         'rounded-10 bg-primary',
         { 'opacity-90': !!disabled },
@@ -33,7 +36,7 @@ export const theme = createTheme({
         inputContainerStyle: tw.style(
           'border-b-2 border-2 rounded-10 border-grey-100 h-64  px-20 pr-35 bg-grey-100',
           {
-            'border-primary':
+            'border-success':
               !isError &&
               !disabled &&
               value !== '' &&
